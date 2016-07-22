@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec75d013-af88-4109-8e92-14ba46457e14" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/street_scraper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bot.rb" afterPath="$PROJECT_DIR$/bot.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bot.yml" afterPath="$PROJECT_DIR$/bot.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/street_scraper.rb" afterPath="$PROJECT_DIR$/street_scraper.rb" />
     </list>
     <ignored path="starter-ruby-bot.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,21 +25,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="bot.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bot.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bot.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="55" column="24" selection-start-line="55" selection-start-column="24" selection-end-line="55" selection-end-column="24" />
+            <state relative-caret-position="30">
+              <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="street_scraper.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="street_scraper.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/street_scraper.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+            <state relative-caret-position="15">
+              <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -84,8 +82,8 @@
       <list>
         <option value="$PROJECT_DIR$/bot.yml" />
         <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/street_scraper.rb" />
         <option value="$PROJECT_DIR$/bot.rb" />
+        <option value="$PROJECT_DIR$/street_scraper.rb" />
       </list>
     </option>
   </component>
@@ -270,12 +268,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1469211769658</updated>
-      <workItem from="1469211770764" duration="3280000" />
+      <workItem from="1469211770764" duration="4008000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3280000" />
+    <option name="totallyTimeSpent" value="4008000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="168" y="23" width="1895" height="1246" extended-state="0" />
@@ -324,18 +322,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/street_scraper.rb">
+    <entry file="file://$PROJECT_DIR$/bot.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+        <state relative-caret-position="30">
+          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bot.rb">
+    <entry file="file://$PROJECT_DIR$/street_scraper.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="55" column="24" selection-start-line="55" selection-start-column="24" selection-end-line="55" selection-end-column="24" />
+        <state relative-caret-position="15">
+          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
           <folding />
         </state>
       </provider>

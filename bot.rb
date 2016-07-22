@@ -1,5 +1,6 @@
 require 'slack-ruby-client'
 require 'logging'
+require_relative 'street_scraper'
 
 logger = Logging.logger(STDOUT)
 logger.level = :debug

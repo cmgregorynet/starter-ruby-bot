@@ -18,9 +18,14 @@ GEM
     logging (2.0.0)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
+    mini_portile2 (2.1.0)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    nokogiri (1.6.8)
+      mini_portile2 (~> 2.1.0)
+      pkg-config (~> 1.1.7)
+    pkg-config (1.1.7)
     slack-ruby-client (0.5.1)
       faraday
       faraday_middleware
@@ -39,4 +44,8 @@ DEPENDENCIES
   faye-websocket
   httparty
   logging
+  nokogiri
   slack-ruby-client
+
+BUNDLED WITH
+   1.11.2
