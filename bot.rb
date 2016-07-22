@@ -17,7 +17,7 @@ end
 
 client = Slack::RealTime::Client.new
 
-players_to_points = Redis.new
+players_to_points = {}
 
 # listen for hello (connection) event - https://api.slack.com/events/hello
 client.on :hello do
@@ -50,16 +50,16 @@ client.on :message do |data|
     when /^go/ then
       if poke_spotted
         poke_spotted = false
-        points = players_to_points.get(data['user']).to_i
+        points = players_to_points[data['user']].to_i
         puts points
 
         points = points + 1
 
-        players_to_points.set(data['user'], points)
+        players_to_points[data['user']] = points
       end
 
     when 'score'
-      points = players_to_points.get(data['user'])
+      points = players_to_points[data['user']]
       client.message channel: data['channel'], text: "Your points: #{points}"
 
     when 'attachment', 'bot attachment' then
