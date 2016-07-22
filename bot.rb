@@ -1,6 +1,8 @@
 require 'slack-ruby-client'
 require 'logging'
 require_relative 'street_scraper'
+require 'redis'
+require 'byebug'
 
 logger = Logging.logger(STDOUT)
 logger.level = :debug
@@ -15,25 +17,19 @@ end
 
 client = Slack::RealTime::Client.new
 
+players_to_points = Redis.new
+
 # listen for hello (connection) event - https://api.slack.com/events/hello
 client.on :hello do
   logger.debug("Connected '#{client.self['name']}' to '#{client.team['name']}' team at https://#{client.team['domain']}.slack.com.")
 end
 
 # listen for message event - https://api.slack.com/events/message
+poke_spotted = false
+
 client.on :message do |data|
 
   case data['text']
-  when 'hi', 'bot hi' then
-    client.typing channel: data['channel']
-    client.message channel: data['channel'], text: "Hello <@#{data['user']}>."
-    logger.debug("<@#{data['user']}> said hi")
-
-    if direct_message?(data)
-      client.message channel: data['channel'], text: "It\'s nice to talk to you directly."
-      logger.debug("And it was a direct message")
-    end
-
     when 'streets' then
       client.typing channel: data['channel']
       client.message channel: data['channel'], text: "Hello <@#{data['user']}>."
@@ -48,23 +44,40 @@ client.on :message do |data|
       street_scraper.get_street_names
       street_scraper.create_channels(1, client.web_client)
 
+    when /spotted(.*)/ then
+      poke_spotted = true
 
-  when 'attachment', 'bot attachment' then
-    # attachment messages require using web_client
-    client.web_client.chat_postMessage(post_message_payload(data))
-    logger.debug("Attachment message posted")
+    when /^go/ then
+      if poke_spotted
+        poke_spotted = false
+        points = players_to_points.get(data['user']).to_i
+        puts points
 
-  when bot_mentioned(client)
-    client.message channel: data['channel'], text: 'You really do care about me. :heart:'
-    logger.debug("Bot mentioned in channel #{data['channel']}")
+        points = points + 1
 
-  when 'bot help', 'help' then
-    client.message channel: data['channel'], text: help
-    logger.debug("A call for help")
+        players_to_points.set(data['user'], points)
+      end
 
-  when /^bot/ then
-    client.message channel: data['channel'], text: "Sorry <@#{data['user']}>, I don\'t understand. \n#{help}"
-    logger.debug("Unknown command")
+    when 'score'
+      points = players_to_points.get(data['user'])
+      client.message channel: data['channel'], text: "Your points: #{points}"
+
+    when 'attachment', 'bot attachment' then
+      # attachment messages require using web_client
+      client.web_client.chat_postMessage(post_message_payload(data))
+      logger.debug("Attachment message posted")
+
+    when bot_mentioned(client)
+      client.message channel: data['channel'], text: 'You really do care about me. :heart:'
+      logger.debug("Bot mentioned in channel #{data['channel']}")
+
+    when 'bot help', 'help' then
+      client.message channel: data['channel'], text: help
+      logger.debug("A call for help")
+
+    when /^bot/ then
+      client.message channel: data['channel'], text: "Sorry <@#{data['user']}>, I don\'t understand. \n#{help}"
+      logger.debug("Unknown command")
   end
 end
 
