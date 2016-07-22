@@ -22,7 +22,7 @@ end
 # listen for channel_joined event - https://api.slack.com/events/channel_joined
 client.on :channel_joined do |data|
   if joiner_is_bot?(client, data)
-    client.message channel: data['channel']['id'], text: "Thanks for the invite! I don\'t do much yet, but #{help}"
+    client.message channel: data['channel']['id'], text: "YAY for the invite! I don\'t do much yet, but #{help}"
     logger.debug("#{client.self['name']} joined channel #{data['channel']['id']}")
   else
     logger.debug("Someone far less important than #{client.self['name']} joined #{data['channel']['id']}")
@@ -42,6 +42,18 @@ client.on :message do |data|
       client.message channel: data['channel'], text: "It\'s nice to talk to you directly."
       logger.debug("And it was a direct message")
     end
+
+    when 'streets' then
+      client.typing channel: data['channel']
+      client.message channel: data['channel'], text: "Hello <@#{data['user']}>."
+      logger.debug("<@#{data['user']}> said hi")
+
+      if direct_message?(data)
+        client.message channel: data['channel'], text: "It\'s nice to talk to you directly."
+        logger.debug("And it was a direct message")
+      end
+
+      StreetScraper.new.get_street_names
 
   when 'attachment', 'bot attachment' then
     # attachment messages require using web_client

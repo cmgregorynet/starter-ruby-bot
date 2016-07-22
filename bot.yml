@@ -1,5 +1,5 @@
-name: Beepboop Starterbot
-description: A simple Ruby bot starter for Beep Boop
+name: Street Bot
+description: A channel generator bot
 avatar: resources/avatar.png
 #background: resources/background.png
 #config:
