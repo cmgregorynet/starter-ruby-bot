@@ -47,6 +47,9 @@ client.on :message do |data|
     when /spotted(.*)/ then
       poke_spotted = true
 
+    when /missed(.*)/ then
+      poke_spotted = true
+
     when /^go/ then
       if poke_spotted
         poke_spotted = false
