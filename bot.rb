@@ -20,16 +20,6 @@ client.on :hello do
   logger.debug("Connected '#{client.self['name']}' to '#{client.team['name']}' team at https://#{client.team['domain']}.slack.com.")
 end
 
-# listen for channel_joined event - https://api.slack.com/events/channel_joined
-client.on :channel_joined do |data|
-  if joiner_is_bot?(client, data)
-    client.message channel: data['channel']['id'], text: "YAY for the invite! I don\'t do much yet, but #{help}"
-    logger.debug("#{client.self['name']} joined channel #{data['channel']['id']}")
-  else
-    logger.debug("Someone far less important than #{client.self['name']} joined #{data['channel']['id']}")
-  end
-end
-
 # listen for message event - https://api.slack.com/events/message
 client.on :message do |data|
 
@@ -54,7 +44,10 @@ client.on :message do |data|
         logger.debug("And it was a direct message")
       end
 
-      StreetScraper.new.get_street_names
+      street_scraper = StreetScraper.new
+      street_scraper.get_street_names
+      street_scraper.create_channels(1, client.web_client)
+
 
   when 'attachment', 'bot attachment' then
     # attachment messages require using web_client
