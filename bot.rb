@@ -50,10 +50,14 @@ client.on :message do |data|
     when /^go/ then
       if poke_spotted
         poke_spotted = false
-        points = players_to_points[data['user']].to_i
+        points = players_to_points[data['user']]
         puts points
 
-        points = points + 1
+        if points.nil?
+          points = 1
+        else
+          points = points + 1
+        end
 
         players_to_points[data['user']] = points
       end
